@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!--
+    This is Config sql
+    @author Conan Zhang
+    @date 2011-07-02
+-->
+<mapper namespace="org.conan.taobao.ad.dao.ConfigDAO">
+
+    <resultMap id="config.result" type="configDTO">
+        <result property="id" column="id" javaType="int"/>
+        <result property="width" column="width" javaType="Integer"/>
+        <result property="pic_size" column="pic_size" javaType="Integer"/>
+        <result property="enter_show" column="enter_show" javaType="Integer"/>
+        <result property="favor_show" column="favor_show" javaType="Integer"/>
+        <result property="title_show" column="title_show" javaType="Integer"/>
+        <result property="shoptype" column="shoptype" javaType="Integer"/>
+        <result property="create_date" column="create_date" javaType="java.sql.Timestamp"/>
+        <result property="nick" column="nick" javaType="String"/>
+    </resultMap>
+
+    <sql id="config.select">
+        SELECT
+            id,
+            width,
+            pic_size,
+            enter_show,
+            favor_show,
+            title_show,
+            shoptype,
+            create_date,
+            nick
+    </sql>
+
+    <sql id="config.condition">
+        <if test="width!=null">width = #{width} and</if>
+        <if test="pic_size!=null">pic_size = #{pic_size} and</if>
+        <if test="enter_show!=null">enter_show = #{enter_show} and</if>
+        <if test="favor_show!=null">favor_show = #{favor_show} and</if>
+        <if test="title_show!=null">title_show = #{title_show} and</if>
+        <if test="shoptype!=null">shoptype = #{shoptype} and</if>
+        <if test="create_date!=null">create_date = #{create_date} and</if>
+        <if test="nick!=null">nick = #{nick} and</if>
+        1=1
+    </sql>
+
+    <insert id="config.insertConfig" parameterType="configDTO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_ad_config(
+            width,
+            pic_size,
+            enter_show,
+            favor_show,
+            title_show,
+            shoptype,
+            create_date,
+            nick
+        ) VALUES (
+            #{width},
+            #{pic_size},
+            #{enter_show},
+            #{favor_show},
+            #{title_show},
+            #{shoptype},
+            #{create_date},
+            #{nick}
+        )
+    </insert>
+
+    <delete id="config.deleteConfig" parameterType="java.lang.Integer">
+        DELETE FROM t_ad_config
+        WHERE
+            id = #{id}
+    </delete>
+
+    <update id="config.updateConfig" parameterType="configDTO">
+        UPDATE t_ad_config
+        SET
+            <if test="width!=null">width = #{width},</if>
+            <if test="pic_size!=null">pic_size = #{pic_size},</if>
+            <if test="enter_show!=null">enter_show = #{enter_show},</if>
+            <if test="favor_show!=null">favor_show = #{favor_show},</if>
+            <if test="title_show!=null">title_show = #{title_show},</if>
+            <if test="shoptype!=null">shoptype = #{shoptype},</if>
+            <if test="create_date!=null">create_date = #{create_date},</if>
+            <if test="nick!=null">nick = #{nick},</if>
+            id = #{id}
+        WHERE
+            id = #{id}
+    </update>
+
+    <select id="config.getConfigById" parameterType="java.lang.Integer" resultMap="config.result">
+        <include refid="config.select"/>
+        FROM
+            t_ad_config
+        WHERE
+            id = #{id}
+    </select>
+
+    <select id="config.getConfigs" parameterType="java.util.Map" resultMap="config.result">
+        <include refid="config.select"/>
+        FROM
+            t_ad_config
+        WHERE
+        <include refid="config.condition"/>
+        <include refid="mysql.page.order"/>
+        <include refid="mysql.page.limit"/>
+    </select>
+
+    <select id="config.getConfigsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            count(id)
+        FROM
+            t_ad_config
+        WHERE
+        <include refid="config.condition"/>
+    </select>
+
+
+</mapper>

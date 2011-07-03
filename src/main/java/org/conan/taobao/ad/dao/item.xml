@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!--
+    This is Item sql
+    @author Conan Zhang
+    @date 2011-06-26
+-->
+<mapper namespace="org.conan.taobao.ad.dao.ItemDAO">
+
+    <resultMap id="item.result" type="itemDTO">
+        <result property="id" column="id" javaType="int"/>
+        <result property="nick" column="nick" javaType="String"/>
+        <result property="title" column="title" javaType="String"/>
+        <result property="price" column="price" javaType="Float"/>
+        <result property="pic_url" column="pic_url" javaType="String"/>
+        <result property="desc_url" column="desc_url" javaType="String"/>
+        <result property="dtime" column="dtime" javaType="java.util.Date"/>
+        <result property="create_date" column="create_date" javaType="java.sql.Timestamp"/>
+        <result property="itemid" column="itemid" javaType="Long"/>
+    </resultMap>
+
+    <sql id="item.select">
+        SELECT
+            id,
+            nick,
+            title,
+            price,
+            pic_url,
+            desc_url,
+            dtime,
+            create_date,
+            itemid
+    </sql>
+
+    <sql id="item.condition">
+        <if test="nick!=null">nick = #{nick} and</if>
+        <if test="title!=null">title = #{title} and</if>
+        <if test="price!=null">price = #{price} and</if>
+        <if test="pic_url!=null">pic_url = #{pic_url} and</if>
+        <if test="desc_url!=null">desc_url = #{desc_url} and</if>
+        <if test="dtime!=null">dtime = #{dtime} and</if>
+        <if test="create_date!=null">create_date = #{create_date} and</if>
+        <if test="itemid!=null">itemid = #{itemid} and</if>
+        1=1
+    </sql>
+
+    <insert id="item.insertItem" parameterType="itemDTO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_ad_item(
+            nick,
+            title,
+            price,
+            pic_url,
+            desc_url,
+            dtime,
+            create_date,
+            itemid
+        ) VALUES (
+            #{nick},
+            #{title},
+            #{price},
+            #{pic_url},
+            #{desc_url},
+            #{dtime},
+            #{create_date},
+            #{itemid}
+        )
+    </insert>
+
+    <delete id="item.deleteItem" parameterType="java.lang.Integer">
+        DELETE FROM t_ad_item
+        WHERE
+            id = #{id}
+    </delete>
+
+    <update id="item.updateItem" parameterType="itemDTO">
+        UPDATE t_ad_item
+        SET
+            <if test="nick!=null">nick = #{nick},</if>
+            <if test="title!=null">title = #{title},</if>
+            <if test="price!=null">price = #{price},</if>
+            <if test="pic_url!=null">pic_url = #{pic_url},</if>
+            <if test="desc_url!=null">desc_url = #{desc_url},</if>
+            <if test="dtime!=null">dtime = #{dtime},</if>
+            <if test="create_date!=null">create_date = #{create_date},</if>
+            <if test="itemid!=null">itemid = #{itemid},</if>
+            id = #{id}
+        WHERE
+            id = #{id}
+    </update>
+
+    <select id="item.getItemById" parameterType="java.lang.Integer" resultMap="item.result">
+        <include refid="item.select"/>
+        FROM
+            t_ad_item
+        WHERE
+            id = #{id}
+    </select>
+
+    <select id="item.getItems" parameterType="java.util.Map" resultMap="item.result">
+        <include refid="item.select"/>
+        FROM
+            t_ad_item
+        WHERE
+        <include refid="item.condition"/>
+        <include refid="mysql.page.order"/>
+        <include refid="mysql.page.limit"/>
+    </select>
+
+    <select id="item.getItemsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            count(id)
+        FROM
+            t_ad_item
+        WHERE
+        <include refid="item.condition"/>
+    </select>
+
+
+</mapper>

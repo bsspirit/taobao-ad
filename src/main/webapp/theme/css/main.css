@@ -1,0 +1,51 @@
+*{padding:0;margin:0}
+body {background: url("../pic/bg.jpg") repeat-x scroll 0 0 #FFFFFF;color: #555555;font: 73%/1.5em 'Trebuchet MS',Tahoma,sans-serif;}
+
+a {background: inherit;color: #72A545;text-decoration: none;}
+a:hover {background: inherit;color: #006699;text-decoration: underline;}
+h1, h2, h3 {font: bold 1em 'Trebuchet MS',Tahoma,Sans-serif;}
+p, h1, h2, h3 {margin: 10px 15px 10px 0;}
+form {background-color: #FAFAFA;border: 1px solid #F2F2F2;margin:0;padding: 10px;}
+form p{font-size:14px;height:20px;}
+form .label{width:140px;float:left;}
+form .col1{width:150px;float:left;}
+
+input {border: 1px solid #EEEEEE;color: #777777;font: 1em "Trebuchet MS",Tahoma,sans-serif;padding: 2px;}
+textarea {border: 1px solid #EEEEEE;color: #777777;display: block;font: 1em "Trebuchet MS",Tahoma,sans-serif;height: 100px;padding: 2px;width: 400px;}
+input.button {background: url("../pic/inputbg.jpg") repeat-x scroll 0 0 #FFFFFF;border: 1px solid #DADADA;color: #333333;font: bold 1em Arial,Sans-serif;margin: 0;padding: 2px 3px;}
+
+.clear{clear:both;}
+.red{color:red;}
+.blue{color:blue;}
+
+.items .page-top{border-bottom:1px solid #EFEDED; margin:5px 0 15px;}
+.items .page-bom{border-top:1px solid #EFEDED; margin:15px 0 5px;}
+.items .list{list-style-type:none;margin:5;padding:0;}
+.items .list li{margin:5px 0;padding:3;}
+.items .detail{list-style: none outside none;}
+.items .detail li{list-style-type:none;float:left;}
+li .box{width:30px}
+li .pic{width:60px}
+li .title{width:300px}
+li .price{width:60px}
+li .dtime{width:120px}
+li .ad{width:100px}
+
+/*---------------------------------*/
+
+#main{width:950px;text-align: center;margin:0 auto;}
+#header{height:100px;padding:5px 0;}
+#header .logo{font-size:30px;color:white;margin:15px 0 0 0;}
+#sideleft{float:left;width:22%;margin-bottom:10px;}
+#sideleft .login{background: none repeat scroll 0 0 #F5F5F5;border: 1px solid #EFEDED;margin-bottom:20px;}
+#sideleft .nav{background: none repeat scroll 0 0 #F5F5F5;border: 1px solid #EFEDED;margin-bottom:20px;}
+#sideleft ul{list-style-type:none;padding:10px 5px;}
+#sideleft ul li{margin:5px 0;border-bottom:1px solid #EFEDED;}
+#content{float:right;width:75%;padding:0;}
+#footer{padding:10px;border-top: 1px solid #EAEAEA;margin: 10px auto;}
+#footer .col{padding:0 5px 30px 0;width:300px;float:left;}
+#footer .col2{padding:0 0 30px;width:300px;float:left;}
+#footer ul{list-style:none outside none;}
+#header,#sideleft,#footer,#content{text-align:left;}
+
+
