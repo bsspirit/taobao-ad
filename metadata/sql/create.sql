@@ -40,20 +40,3 @@ CREATE TABLE t_ad_html(
 	create_date datetime not null
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-/*
-CREATE TABLE t_ad_config(
-	id int primary key auto_increment,
-	uid int not null,
-	shop_type varchar(16) not null,
-	search_word varchar(16) not null,
-	enter_btn int not null default 1,
-	favorite_btn int not null default 1,
-	item_title int not null default 1,
-	width int not null default 740,
-	pic_size int not null default 160,
-	price_type varchar(16) not null,
-	price_ratio int not null default 130
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-*/
